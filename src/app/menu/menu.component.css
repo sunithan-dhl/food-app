@@ -1,0 +1,11 @@
+:host ::ng-deep .p-menubar {
+    background: #ffcc00;
+}
+.color_d40513
+{
+    color: #d40513;
+    font-family: 'Poppins', sans-serif;
+}
+:host ::ng-deep .mat-raised-button.mat-primary{
+    background-color: #d40513;
+}

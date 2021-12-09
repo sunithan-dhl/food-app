@@ -1,0 +1,100 @@
+<div class="container">
+    <app-menu></app-menu>
+<div class="empty" *ngIf = "items.length<1" >
+    <div class="info">
+        <h4>You dont have any items in your cart.</h4>
+        <button pButton routerLink = "/list" class="p-button-secondary">Start Shopping</button>
+    </div>
+</div>
+<div class="" *ngIf = "items.length>0" >
+    <table class="width-66 datatable cart">
+        <thead >
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Delete</th>
+            <th>Total</th>
+        </thead>
+        <tbody class="">
+            <tr *ngFor = 'let item of items; let i = index'>
+                <td class="text-center">{{item.name}}</td>
+                <!-- <td class="text-center"><img [src]="'assets/images/' +item.image" alt="img" style="width: 100px;" /></td> -->
+                <td>{{item.price | currency:'INR'}}</td>
+                <td>
+                    <!-- <input type="number" class="qnt" [value]="item.qnt" (blur) = "validateInput($event, i)" /> -->
+                    <p-inputNumber (onBlur)="validateInput($event, i)"  [showButtons]="true" buttonLayout="horizontal" inputId="horizontal" inputStyleClass="quantityinput" spinnerMode="horizontal" [step]="1" [(ngModel)]="item.qnt" inputStyleClass="quantityinput" 
+                    decrementButtonClass="p-button-secondary" incrementButtonClass="p-button-secondary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus">
+                    </p-inputNumber>
+                </td>
+                <td><button pButton pRipple class="p-button-secondary" icon="pi pi-trash" (click) = "onDelete(i)"></button></td>
+                <td>{{item.price * item.qnt | currency:'INR'}}</td>
+            </tr>
+        </tbody>
+    </table>   
+    <p-toast></p-toast>
+ 
+    <div class="checkout">
+        <!-- <p>Subtotal</p>
+        <b>INR 0</b> -->
+        <p>Shipping</p>
+        <b>INR 0</b>
+        <p>Total</p>
+        <b>{{total | currency:'INR'}}</b>
+        <button pButton class="btn p-button-secondary text-center" (click) = "onCheckout()">Check Out</button>
+        <p-dialog header="Check Out" [(visible)]="displayResponsive" [breakpoints]="{'960px': '75vw'}"     [style]="{width: '60vw'}" [draggable]="false" [resizable]="false">
+            <!-- <p-messages [hideTransitionOptions]="'0ms'"></p-messages> -->
+            <form novalidate [formGroup]= 'submitdata' (ngSubmit) ='onSubmit()' >
+                <div class="fluid formgrid grid" >
+                    <div class="field md:col-6">
+                        <label for="firstname">Firstname</label>
+                        <input id="firstname" type="text" pInputText formControlName="fname" required
+                         />
+                        <div *ngIf="ErrorMessage.fname.touched && ErrorMessage.fname.invalid">
+                            <small class="text-danger" *ngIf="ErrorMessage.fname.errors?.required">
+                                Name is required!
+                            </small>
+                        </div>
+                    </div>
+                    <div class="field md:col-6">
+                        <label for="lastname">Lastname</label>
+                        <input id="lastname" type="text" pInputText  formControlName="lname" required/>
+                        <div *ngIf="ErrorMessage.lname.touched && ErrorMessage.lname.invalid">
+                            <small class="text-danger" *ngIf="ErrorMessage.lname.errors?.required">
+                                Name is required!
+                            </small>
+                        </div>
+                    </div>
+                    <div class="field md:col-12">
+                        <label for="address">Address</label>
+                        <textarea id="address" type="text" rows="4" pInputTextarea formControlName="address" required></textarea>
+                        <div *ngIf="ErrorMessage.address.touched && ErrorMessage.address.invalid">
+                            <small class="text-danger" *ngIf="ErrorMessage.address.errors?.required">
+                                Address is required!
+                            </small>
+                        </div>
+                    </div>
+                    <div class="field md:col-6">
+                        <label for="city">City</label>
+                        <input id="city" type="text" pInputText formControlName="city" required/>
+                        <div *ngIf="ErrorMessage.city.touched && ErrorMessage.city.invalid">
+                            <small class="text-danger" *ngIf="ErrorMessage.city.errors?.required">
+                                City is required!
+                            </small>
+                        </div>
+                    </div>
+                    <div class="field md:col-6">
+                        <label for="zip">Zip</label>
+                        <input id="zip" type="number" pInputText formControlName="zip" required/>
+                        <div *ngIf="ErrorMessage.zip.touched && ErrorMessage.zip.invalid">
+                            <small class="text-danger" *ngIf="ErrorMessage.zip.errors?.required">
+                                Zip code is required!
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                <button pButton type="submit" name="submit" class="p-button-secondary order width-100 text-center block">Place Order</button>
+            </form>
+        </p-dialog>
+    </div>
+</div>
+</div>

@@ -1,0 +1,137 @@
+<div class="container">
+    <!-- <p>{{selectedItem.name}}</p> -->
+    <h3 class="text-center order-heading">Order Now</h3>
+    <div class="grid">
+        <div class="md:col-3"></div>
+        <div class="md:col-6 bg">
+            <form novalidate [formGroup]= 'submitdata' (ngSubmit) ='onSubmit()' >
+                <div class="fluid formgrid grid" >
+                    <!-- <div class="field md:col-4">
+                        <label for="item">Item</label>
+                        <p-chips id="item" [(ngModel)]="listcart"  *ngIf = 'listcart'  formControlName="item" readonly separator=",">
+                            <ng-template let-data pTemplate="item">
+                                {{data.name}}
+                            </ng-template>
+                        </p-chips>
+                    </div> -->
+                    <div class="field md:col-12">
+                        <!-- <label for="price">Total Price</label> -->
+                        <table class="width-100 datatable">
+                            <thead >
+                                <th>Name</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Delete</th>
+                            </thead>
+                            <tbody >
+                                <tr *ngFor = 'let data of listcart; let id = index'>
+                                    <td class="text-center">{{data.name}}</td>
+                                    <td class="text-center">
+                                        <!-- <button pButton class="incdec p-button-secondary" (click)="dec(data)">-</button>
+                                       
+                                        <input id="quantity" value="{{data.qnt}}" pInputText formControlName="qnt" readonly required/>
+                                        <button pButton class="incdec p-button-secondary" (click)="inc(data)">+</button> -->
+                                        <!-- <div class="p-inputgroup btnqun">
+                                            <button type="button" pButton pRipple icon="pi pi-minus" styleClass="p-button-secondary" (click)="dec(data)"></button>    
+                                            <input  type="text" value="{{data.qnt}}" (onKeyUp)="onQuantityChange(data.id)" pInputText />   
+                                            <button type="button" pButton pRipple icon="pi pi-plus" styleClass="p-button-secondary" (click)="inc(data)"></button>      
+                                        </div> -->
+                                        <p-inputNumber formControlName="quantity" (onInput)="onQuantityChange($event)"  [showButtons]="true" buttonLayout="horizontal" inputId="horizontal" inputStyleClass="quantityinput" spinnerMode="horizontal" [step]="1"
+                                        decrementButtonClass="p-button-secondary" incrementButtonClass="p-button-secondary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus">
+                                        </p-inputNumber>
+                                    </td>
+                                    <td class="text-center" id="eachprice" >{{data.price}}
+                                        <input id="{{data.id}}" #pricedata [attr.dataid]="data.id"   type="text" value="{{data.price}}" pInputText formControlName="price" class="pp" readonly required />
+                                    </td>
+                                    
+                                    <td class="text-center" (click)="remove(data.id)"><button pButton pRipple icon="pi pi-trash"></button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- <input id="price"  *ngFor = 'let data of listcart'  type="text" value="{{data.price}}" pInputText formControlName="price" readonly required/> -->
+                    </div>
+                    <!-- <div class="field md:col-4">
+                        <label for="horizontal">Quantity</label>
+                        <p-inputNumber formControlName="quantity" (onInput)="onQuantityChange($event)"  [showButtons]="true" buttonLayout="horizontal" inputId="horizontal" inputStyleClass="quantityinput" spinnerMode="horizontal" [step]="1"
+                        decrementButtonClass="p-button-secondary" incrementButtonClass="p-button-secondary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus">
+                        </p-inputNumber>
+                    </div> -->
+                    <div class="field md:col-6">
+                        <label for="firstname">Firstname</label>
+                        <input id="firstname" type="text" pInputText formControlName="fname" required
+                         />
+                        <div *ngIf="ErrorMessage.fname.touched && ErrorMessage.fname.invalid">
+                            <small class="text-danger" *ngIf="ErrorMessage.fname.errors?.required">
+                                Name is required!
+                            </small>
+                        </div>
+                    </div>
+                    <div class="field md:col-6">
+                        <label for="lastname">Lastname</label>
+                        <input id="lastname" type="text" pInputText  formControlName="lname" required/>
+                        <div *ngIf="ErrorMessage.lname.touched && ErrorMessage.lname.invalid">
+                            <small class="text-danger" *ngIf="ErrorMessage.lname.errors?.required">
+                                Name is required!
+                            </small>
+                        </div>
+                    </div>
+                    <div class="field md:col-12">
+                        <label for="address">Address</label>
+                        <textarea id="address" type="text" rows="4" pInputTextarea formControlName="address" required></textarea>
+                        <div *ngIf="ErrorMessage.address.touched && ErrorMessage.address.invalid">
+                            <small class="text-danger" *ngIf="ErrorMessage.address.errors?.required">
+                                Address is required!
+                            </small>
+                        </div>
+                    </div>
+                    <div class="field md:col-6">
+                        <label for="city">City</label>
+                        <input id="city" type="text" pInputText formControlName="city" required/>
+                        <div *ngIf="ErrorMessage.city.touched && ErrorMessage.city.invalid">
+                            <small class="text-danger" *ngIf="ErrorMessage.city.errors?.required">
+                                City is required!
+                            </small>
+                        </div>
+                    </div>
+                    <div class="field md:col-6">
+                        <label for="zip">Zip</label>
+                        <input id="zip" type="number" pInputText formControlName="zip" required/>
+                        <div *ngIf="ErrorMessage.zip.touched && ErrorMessage.zip.invalid">
+                            <small class="text-danger" *ngIf="ErrorMessage.zip.errors?.required">
+                                Zip code is required!
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                <button pButton type="submit" name="submit" class="order width-100 text-center block">Place Order</button>
+            </form>
+        </div>
+        <div class="md:col-3"></div>
+    </div>
+    <div *ngIf="show">
+        <div class="data">
+            <table>
+                <thead>
+                    <th>Item</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>Zip</th>
+                </thead>
+                <tbody>
+                    <td>{{show.item}}</td>
+                    <td>{{show.price}}</td>
+                    <td>{{show.quantity}}</td>
+                    <td>{{show.fname}}</td>
+                    <td>{{show.lname}}</td>
+                    <td>{{show.address}}</td>
+                    <td>{{show.city}}</td>
+                    <td>{{show.zip}}</td>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

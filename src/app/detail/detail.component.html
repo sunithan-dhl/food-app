@@ -1,0 +1,61 @@
+<div class="container" *ngIf="selectedItem">
+    <app-menu></app-menu>
+   <div class="cart">
+    <!-- <button pButton class="carticon  p-mr-4 p-text-secondary" pBadge severity="success" [value]="'1'" p-overlay-badge position='before'><i class="pi pi-shopping-cart" ></i></button> -->
+    <!-- <button [routerLink] ="['/cart']" class="carticon" mat-raised-button color="primary"
+      matBadge="{{itemInCart}}" matBadgePosition="after" matBadgeColor="accent">
+      <i class="pi pi-shopping-cart" ></i>  
+    </button> -->
+    <p-overlayPanel #op [showCloseIcon]="true" [style]="{width: '300px'}">
+        <ng-template pTemplate>
+            <table class="width-100 datatable" [ngClass] = "{hide: datatable == 'hide'}">
+                <thead >
+                    <th>Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                </thead>
+                <tbody >
+                    <tr *ngFor = 'let data of listAllCart'>
+                        <td>{{data.name}}</td>
+                        <td>{{data.qnt}}</td>
+                        <td>{{data.price}}</td>
+                    </tr>
+                    <!-- <tr>
+                        <td colspan="2" class="text-right"><b>Total</b> : </td>
+                        <td colspan="" class="">{{data.qnt * data.price}}</td>
+                    </tr> -->
+                    <!-- <tr><td colspan="3" class="text-right"><button pButton type="button" class="product-order m-0" [routerLink]="['/checkout', data.id]">Proceed</button></td></tr> -->
+                    <tr><td colspan="3" class="text-right"><button pButton type="button" class="product-order m-0" [routerLink]="['/checkout1']">Proceed</button></td></tr>
+                </tbody>
+            </table>
+            <p [ngClass] = "{hide: datatable == 'show'}">No item in the cart</p>
+        </ng-template>
+    </p-overlayPanel>
+   </div>
+    <div class="grid">
+        <div class="md:col-6">
+            <h4>{{selectedItem.name}}</h4>
+            <p class="detail-para">{{selectedItem.description}}</p>
+            <div class="display-inline">
+                <!-- <p class="detail-para">{{detail.price}}</p> -->
+                <button pButton type="button" class="product-order" [routerLink]="['/order', selectedItem.name]">Order Now</button>
+                <!-- <button pButton type="button" class="product-order" (click)="confirm($event)">Add to Cart</button> -->
+                <button pButton type="button" class="product-order" (click)="addToCart(selectedItem)">Add to Cart</button>
+                <!-- <div class="quantity">
+                    <label for="horizontal">Quantity</label>
+                    <p-inputNumber [(ngModel)]="quantity" [showButtons]="true" buttonLayout="horizontal" inputId="horizontal" inputStyleClass="quantityinput" spinnerMode="horizontal" [step]="1"
+                    decrementButtonClass="p-button-secondary" incrementButtonClass="p-button-secondary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus">
+                    </p-inputNumber>
+                </div>
+                <p-toast></p-toast> -->
+                <p-confirmPopup></p-confirmPopup>
+            </div>
+            
+        </div>
+        <div class="md:col-6">
+            <img [src]="'assets/images/' +selectedItem.image" alt="img" class="width-100"/>
+        </div>
+    </div>
+    <p-toast></p-toast>
+</div>
+

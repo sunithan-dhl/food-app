@@ -1,0 +1,85 @@
+.empty{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    text-align: center;
+}
+.cart{
+    /* display: flex; */
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.imgbox img{
+    width: 100px;
+}
+.width-66
+{
+    width: 66%;
+    margin: auto;
+    text-align: center;
+}
+.width-100
+{
+    width: 100%;
+    margin: auto;
+    text-align: center;
+}
+.checkout{
+    width: 70%;
+    margin: auto;
+    border-top: 1px solid #ccc;
+    display: grid;
+    justify-content: end;
+    grid-template-columns: repeat(2, 8rem);
+    gap: 1rem;
+    margin-top: 1rem;
+    padding: .5rem;
+}
+b{
+    justify-self: end;
+}
+.btn{
+    grid-column: 1 / -1;
+    display: block;
+}
+.container{
+    padding: 2rem;
+    /* background: linear-gradient(#ffffff, #eaeaea); */
+height: 100%;
+}
+:host ::ng-deep .quantityinput {
+    width: 50px;
+    text-align: center;
+}
+
+.text-danger{
+    color: red;
+}
+.fluid .p-inputtext {
+    width: 100%;
+}
+.field {
+    margin-bottom: auto;
+}
+:host ::ng-deep .p-button.p-button-secondary {
+    color: #ffffff;
+    background: #d40513;
+    border: 1px solid #d40513;
+}
+:host ::ng-deep .p-button.p-button-secondary:hover {
+    color: #d40513;
+    background: #ffcc00;
+    border: 1px solid #ffcc00;
+}
+:host ::ng-deep .p-inputtext:enabled:focus, :host ::ng-deep  .p-button.p-button-secondary:enabled:focus {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: 0 0 0 0.2rem #ffcc0029;
+    border-color: #ffcc00;
+}
+:host ::ng-deep .p-dialog .p-dialog-header {
+    color: #d40513;
+    font-family: 'Poppins', sans-serif;
+}

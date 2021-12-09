@@ -1,0 +1,58 @@
+<div class="bg">   
+    <form class="example-form">
+        <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Number</mat-label>
+        <input type="text"
+                placeholder="Pick one"
+                aria-label="Number"
+                matInput
+                [formControl]="myControl"
+                [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+            {{option}}
+            </mat-option>
+        </mat-autocomplete>
+        </mat-form-field>
+    </form>
+
+    <button mat-raised-button color="primary"
+        matBadge="8" matBadgePosition="after" matBadgeColor="accent"  [matBadgeHidden]='hidden' (click)="toggleBadgeVisibility()">
+        Action
+    </button>
+    <br /><p></p>
+    <p><span matBadge = "5" matBadgePostion="after" matBadgeOverlap="false">Message</span></p>
+    <mat-button-toggle-group #grp = "matButtonToggleGroup">
+    <mat-button-toggle value="left" aria-label="Text align left">
+        <mat-icon>format_align_left</mat-icon>
+    </mat-button-toggle>
+    <mat-button-toggle value="center" aria-label="Text align center">
+        <mat-icon>format_align_center</mat-icon>
+    </mat-button-toggle>
+    <mat-button-toggle value="right" aria-label="Text align right">
+        <mat-icon>format_align_right</mat-icon>
+    </mat-button-toggle>
+    <mat-button-toggle value="justify" disabled aria-label="Text align justify">
+        <mat-icon>format_align_justify</mat-icon>
+    </mat-button-toggle>
+    </mat-button-toggle-group>
+    
+    <div><br />Value is : {{grp.value}}</div>
+
+    <mat-card class="card">
+        <mat-card-header>
+            <div mat-card-avatar class="header-image"></div>
+            <mat-card-title>DHL</mat-card-title>
+            <mat-card-subtitle>IT Services</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="assets/img/dhl-img.jpg" alt="DHL" />
+        <mat-card-content>
+            <p>10th floor, D North Block, Chennai One - IT SEZ Pallavaram, 200 Feet Radial Rd, Thoraipakkam, Tamil Nadu 600097</p>
+        </mat-card-content>
+        <mat-card-actions>
+            <p id="likes">{{like}} k</p>
+            <button mat-button (click) = "likes()">LIKE</button>
+            <button mat-button>SHARE</button>
+        </mat-card-actions>
+    </mat-card>
+</div>

@@ -1,0 +1,85 @@
+.container{
+    padding: 2rem;
+    /* background: #eeeeee; */
+}
+.width-100{
+    width: 100%;
+}
+.container h4{
+    font-size: 25px;
+    font-weight: bold;
+    padding: 0px 100px;
+    color: #d40513;
+    font-family: 'Poppins', sans-serif;
+}
+img.width-100{
+    border-radius: 150px 5px 150px 5px;
+    box-shadow: 0 0 10px #ccc;
+}
+.container .md\:col-6{
+    margin: auto;
+}
+.detail-para{
+    line-height: 25px;
+    padding: 10px 100px;
+    text-align: justify;
+}
+button.product-order{
+    margin-right: 20px;
+    background: #D40513;
+    color: #fff;
+    border: none;
+}
+button.product-order:hover{
+    background: #ffcc00;
+    color: #D40513;
+    border: none;
+}
+.display-inline {
+    display: inline-flex;
+    margin-left: 96px;
+}
+
+
+.cart {
+    text-align: right;
+    padding-bottom: 10px;
+}
+.carticon {
+    background: #d3d3d3;
+    color: #000;
+    border: #d3d3d3;
+}
+.carticon:hover {
+    background: #ccc;
+    color: #000;
+    border: #ccc;
+}
+.quantity{
+    position: relative;
+}
+:host ::ng-deep .quantityinput {
+    width: 50px;
+    text-align: center;
+}
+.quantity label
+{
+    display: block;
+    position: absolute;
+    top: -25px;
+}
+table td, table th {
+    border: 1px solid #ccc;
+    margin: 0;
+    text-align: center;
+}
+.datatable tbody
+{
+    /* display: none; */
+}
+.datatable.show tbody{
+    display: revert;
+}
+.hide{
+    display: none;
+}

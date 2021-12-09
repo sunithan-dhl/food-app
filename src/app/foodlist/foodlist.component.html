@@ -1,0 +1,95 @@
+<app-loader></app-loader>
+<div class="card">
+    <p-dataView #dt [value]="item" dataKey="id" [rows]="6" layout="grid" [paginator]="true" filterBy="name,category"
+        [sortField]='sortField' [sortOrder]='sortOrder'>
+        <ng-template pTemplate="header">
+            <div class="mob-flex flex p-flex-column flex-row justify-content-between">
+                <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By Price"
+                    (onChange)="onSortChange($event)" styleClass="p-mb-2 p-mb-md-0 " class="overlaybox" data-aos="fade-down"
+                    data-aos-duration="1500"></p-dropdown>
+
+                <!-- <p-multiSelect [options]="filterOptions" [(ngModel)]="value" (onChange)="filterItem($event, 'equals')" defaultLabel="Select category"> </p-multiSelect> -->
+                <p-dropdown class="p-buttonset overlaybox" [options]="filterOptions" [ngModel]="value"
+                    (onChange)="filterItem($event, 'equals')" placeholder="Select category" data-aos="fade-down"
+                    data-aos-duration="1500">
+                    <ng-template let-option pTemplate="item">
+                        <span>{{option.label}}</span>
+                    </ng-template>
+                </p-dropdown>
+                <!-- <button pButton pRipple label="Breakfast" class="p-button-outlined p-button-secondary" (click) = "filterItem('breakfast')"></button>
+                    <button pButton pRipple label="Lunch" class="p-button-outlined p-button-secondary"></button>
+                    <button pButton pRipple label="Dinner" class="p-button-outlined p-button-secondary"></button>
+                    <button pButton pRipple label="All" class="active p-button-outlined p-button-secondary"></button> -->
+
+                <span class="p-input-icon-left p-mb-2 p-mb-md-0" data-aos="fade-down" data-aos-duration="1500">
+                    <i class="pi pi-search"></i>
+                    <input type="text" pInputText placeholder="Search by Name"
+                        (input)="applyFilterGlobal($event, 'contains')">
+                    <!-- <input type="text" pInputText placeholder="Search by Name" (input)="applyFilterGlobal($event, 'contains')"> -->
+                </span>
+                <button [routerLink] ="['/cart']" class="carticon" mat-raised-button color="primary"
+                matBadge="{{itemInCart}}" matBadgePosition="after" matBadgeColor="accent">
+                <i class="pi pi-shopping-cart" ></i>  
+                </button>
+                <!-- <p-dataViewLayoutOptions></p-dataViewLayoutOptions> -->
+            </div>
+        </ng-template>
+        <ng-template let-itemList pTemplate="gridItem">
+            <div class="lg:col-4 sm:col-12" data-aos="fade-up" data-aos-duration="1500">
+                <div class="product-grid-item card">
+                    <div class="product-grid-item-content">
+                        <div class="product-cat" field="category">{{itemList.category}}</div>
+                        <img [src]="'assets/images/' +itemList.image" alt="img" />
+                        <div class="product-name" field="name">{{itemList.name}}</div>
+                        <div class="product-description">{{itemList.description}}</div>
+                        <div class="flex  justify-content-between">
+                            <div class="priceitem">{{itemList.price}} ₹</div>
+                            <button pButton type="button" class="product-read"
+                                [routerLink]="['/detail', itemList.id]">Read More</button>
+                            <!-- (click) = "getOneItems(itemList.id);" -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+        <!-- <p-card class="p-card" header="Advanced Card" subheader="Card Subheader" [style]="{width: '360px'}" styleClass="p-card-shadow" >
+            <ng-template pTemplate="header">
+                <img alt="Card" src="assets/images/maggi.jpg">
+            </ng-template>
+            <p>{{itemList.description}}</p>
+            <ng-template pTemplate="footer">
+                <p-button label="Save" icon="pi pi-check"></p-button>
+                <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{'margin-left': '.5em'}"></p-button>
+            </ng-template>
+        </p-card> -->
+
+
+    </p-dataView>
+
+</div>
+
+<!-- <ng-template pTemplate="gridItem">
+        <div class="card">
+            <div class="grid formgrid">
+                <div class="field col-4 md-6 pr-md-6 pr-0">
+                    <div class="custom-skeleton p-4">
+                        <div class=" mb-3 m-auto">
+                            <p-skeleton shape="square" size="10em" styleClass="m-auto"></p-skeleton>
+                            <div>
+                                <br />
+                                <p-skeleton width="5rem" styleClass="m-auto"></p-skeleton><br />
+                                <p-skeleton height="1rem" styleClass="m-auto"></p-skeleton> <br />
+                                <p-skeleton height="1rem" styleClass="m-auto"></p-skeleton> <br />
+                                <p-skeleton height="1rem" styleClass="m-auto"></p-skeleton>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template> -->
+<p *ngIf="selectedItem">
+    {{selectedItem.id}}
+    {{selectedItem.name}}
+</p>
+<!-- <mat-slider min="1" max="100" step="1" value="50"></mat-slider> -->

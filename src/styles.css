@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins&family=Roboto&family=Saira+Semi+Condensed:wght@300&display=swap');
+
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body
+{
+    background: #ffcc002b;
+}

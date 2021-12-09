@@ -1,0 +1,11 @@
+<p-menubar [model]="items">
+    <ng-template pTemplate="start">
+        <h1 class="m-auto color_d40513">FoodMenu</h1>
+            
+    </ng-template>
+    <button [routerLink] ="['/cart']" class="carticon" mat-raised-button color="primary"
+            matBadge="{{itemInCart}}" matBadgePosition="after" matBadgeColor="accent">
+            <i class="pi pi-shopping-cart" ></i>  
+            </button>
+</p-menubar>
+<br />
